@@ -1,0 +1,36 @@
+:root {
+  --headerFont: "Bungee Inline", sans-serif;
+  --textFont: "IBM Plex Mono", monospace;
+}
+
+body {
+    margin: 0;
+    font-family: var(--textFont);
+    background-color: lightgray;
+}
+
+.headerCV {
+    font-size: 1.5rem;
+    color: #909090;
+
+}
+
+.headerFont {
+    font-family: var(--headerFont);
+}
+
+.headerMain {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.containerMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
