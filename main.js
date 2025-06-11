@@ -129,10 +129,27 @@ class Game {
             } else if (i !== 4) { // hide image without objects
                 imgElement.classList.add('hidden');
                 imgElement.classList.remove('visible');
-            } else if (i === 4 && texts[tileCharContent]) { // collect item
+            } else if (i === 4 && texts[tileCharContent] && !this.listOfCollectedItems.includes(tileCharContent)) { // collect item
                 console.log(`Tile: (${texts[tileCharContent]})`);
                 this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
                 this.listOfCollectedItems.push(tileCharContent);
+                switch (texts[tileCharContent]["texts"][0]["sec"]) {
+                    case "favLan":
+                        document.getElementById('pAchievFavLan').textContent = texts[tileCharContent]["texts"][0]["text"];
+                        break;
+                    case "skills":
+                        document.getElementById('pAchievSkill').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
+                        break;
+                    case "cert":
+                        document.getElementById('pAchievCertif').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
+                        break;
+                    case "exp":
+                        document.getElementById('pAchievExp').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
+                        break;
+                    case "edu":
+                        document.getElementById('pAchievEdu').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
+                        break;
+                }
             }
             
         }
