@@ -83,6 +83,10 @@ body {
     margin-top: 2rem;
 }
 
+.containerInfo {
+    width: 90vw;
+}
+
 .containerMain {
     display: flex;
     flex-direction: column;

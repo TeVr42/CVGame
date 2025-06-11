@@ -11,6 +11,22 @@ const mapText = `
 ###################
 `;
 
+const texts = {
+    "0": {"texts": [{"sec": "favLang", "text": "Python"}, {"sec": "skills", "text": "Python"}], "img": "python.png"},
+    "1": {"texts": [{"sec": "skills", "text": "HTML/CSS"}], "img": "experience.png"},
+    "2": {"texts": [{"sec": "skills", "text": "JavaScript"}], "img": "experience.png"},
+    "3": {"texts": [{"sec": "cert", "text": "100 Days of code: Complete Python Pro Bootcamp"}], "img": "parchment.png"},
+    "4": {"texts": [{"sec": "exp", "text": "Lecturer, coach and workshopist in Czehitas"}], "img": "experience.png"},
+    "5": {"texts": [{"sec": "cert", "text": "First Certificate in English: Level C1"}], "img": "parchment.png"},
+    "6": {"texts": [{"sec": "skills", "text": "Matlab"}], "img": "experience.png"},
+    "7": {"texts": [{"sec": "skills", "text": "SQL"}], "img": "experience.png"},
+    "8": {"texts": [{"sec": "skills", "text": "Machine Learning and Neural Networks"}], "img": "experience.png"},
+    "9": {"texts": [{"sec": "cert", "text": "International Summer School on AI"}], "img": "parchment.png"},
+    "a": {"texts": [{"sec": "edu", "text": "Thesis: Hybrid system for speech extraction"}], "img": "thesis.png"},
+    "b": {"texts": [{"sec": "edu", "text": "Bachelor's degree - Information Technology, Intelligent Systems, FM TUL"}], "img": "eduHat.png"},
+    "k": {"texts": [{"sec": "", "text": "What's next? Maybe we'll meet on my journey..."}], "img": "levelUp.png"}
+}
+
 class Game {
     constructor(mapData) {
         this.map = mapData.trim().split('\n');
@@ -28,7 +44,7 @@ class Game {
         playerTile.appendChild(this.playerElement); 
 
         this.infoText = document.getElementById('infoText');
-        this.infoText.textContent = 'Ovládání: WSAD nebo tlačítka';
+        this.infoText.textContent = 'Controls: WSAD or buttons';
     }
 
     findStartPosition(char) {
@@ -85,21 +101,25 @@ class Game {
             const tile = tiles[i];
             const x = this.posx + (i % 3) - 1;
             const y = this.posy + Math.floor(i / 3) - 1;
-            let textContent;
+            let tileCharContent;
             if (x >= 0 && x < this.map[0].length && y >= 0 && y < this.map.length) {
-                textContent = this.map[y][x];
+                tileCharContent = this.map[y][x];
             } else {
-                textContent = ' ';
+                tileCharContent = ' ';
             }
             
             tile.classList.remove('bgWallBasic', 'bgWallGreen', 'bgGrass');
-            if (textContent === '#') {
-                console.log(`Tile: (${textContent})`);
+            if (tileCharContent === '#') {
                 // const randomOption = Math.random() < 0.5 ? 'bgWallBasic' : 'bgWallGreen';
                 const randomOption = 'bgWallGreen';
                 tile.classList.add(randomOption);
             } else {
                 tile.classList.add('bgGrass');
+            }
+            
+            if (texts[tileCharContent]) {
+                console.log(`Tile: (${texts[tileCharContent]})`);
+                this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
             }
         }
     }
