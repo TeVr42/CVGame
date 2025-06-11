@@ -17,6 +17,18 @@ class Game {
         const position = this.findStartPosition('s');
         this.posx = position.x;
         this.posy = position.y;
+        this.playerDirection = 'front';
+        this.listOfCollectedItems = [];
+
+        this.playerElement = document.createElement('img');
+        this.playerElement.src = 'resources/CharacterBack.png';
+        this.playerElement.alt = 'Hráč';
+        this.playerElement.classList.add('imgObject'); 
+        const playerTile = document.getElementById('gameAreaCell4');
+        playerTile.appendChild(this.playerElement); 
+
+        this.infoText = document.getElementById('infoText');
+        this.infoText.textContent = 'Ovládání: WSAD nebo tlačítka';
     }
 
     findStartPosition(char) {
@@ -34,10 +46,27 @@ class Game {
         console.log(`Hra začíná na pozici: (${this.posx}, ${this.posy})`);
         setInterval(() => {
             this.updateGameArea();
-        }, 1000); // Aktualizace každou sekundu
+        }, 250); // Aktualizace každou sekundu
+    }
 
+    movePlayer(direction) {
+        const directions = {
+            up: { dx: 0, dy: -1, img: 'CharacterBack.png' },
+            down: { dx: 0, dy: 1, img: 'CharacterFront.png' },
+            left: { dx: -1, dy: 0, img: 'CharacterLeft.png' },
+            right: { dx: 1, dy: 0, img: 'CharacterRight.png' }
+        };
+        this.playerElement.src = `resources/${directions[direction].img}`;
+
+        if (this.map[directions[direction].dy + this.posy] &&
+            this.map[directions[direction].dy + this.posy][directions[direction].dx + this.posx] !== '#') {
+            this.posx += directions[direction].dx;
+            this.posy += directions[direction].dy;
+            console.log(`Hráč se přesunul na pozici: (${this.posx}, ${this.posy})`);
+        }
 
     }
+
 
     updateGameArea() {
         const tile0 = document.getElementById('gameAreaCell0');
@@ -66,8 +95,8 @@ class Game {
             tile.classList.remove('bgWallBasic', 'bgWallGreen', 'bgGrass');
             if (textContent === '#') {
                 console.log(`Tile: (${textContent})`);
-                // random two options for wall
-                const randomOption = Math.random() < 0.5 ? 'bgWallBasic' : 'bgWallGreen';
+                // const randomOption = Math.random() < 0.5 ? 'bgWallBasic' : 'bgWallGreen';
+                const randomOption = 'bgWallGreen';
                 tile.classList.add(randomOption);
             } else {
                 tile.classList.add('bgGrass');
@@ -76,10 +105,25 @@ class Game {
     }
 }
 
+const game = new Game(mapText);
+
 document.addEventListener('DOMContentLoaded', () => {
     const output = document.getElementById('output');
-    const game = new Game(mapText);
     output.textContent = `Startovní pozice: (${game.posx}, ${game.posy})\n\nMapa:\n${game.map.join('\n')}`;
 
     game.play();
 });
+
+document.addEventListener('keydown', (e) => {
+const map = {
+    w: 'up',
+    s: 'down',
+    a: 'left',
+    d: 'right'
+};
+if (map[e.key]) game.movePlayer(map[e.key]);
+});
+
+document.querySelectorAll('.containerControls img').forEach(btn =>
+btn.addEventListener('click', () => game.movePlayer(btn.dataset.dir))
+);
