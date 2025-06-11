@@ -10,5 +10,5 @@
     "8": {"texts": [{"sec": "skills", "text": "Machine Learning and Neural Networks"}], "img": "experience.png"},
     "9": {"texts": [{"sec": "cert", "text": "International Summer School on AI"}], "img": "parchment.png"},
     "a": {"texts": [{"sec": "edu", "text": "Thesis: Hybrid system for speech extraction"}], "img": "thesis.png"},
-    "b": {"texts": [{"sec": "edu", "text": "Bachelor's degree - Information Technology, Intelligent Systems, FM TUL"}], "img": "edu_hat.png"}
+    "b": {"texts": [{"sec": "edu", "text": "Bachelor's degree - Information Technology, Intelligent Systems, FM TUL"}], "img": "eduHat.png"}
 }

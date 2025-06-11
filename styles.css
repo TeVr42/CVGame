@@ -23,6 +23,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 33.33%;
+}
+
+#gameAreaCell0, #gameAreaCell1, #gameAreaCell2, #gameAreaCell3, #gameAreaCell4, #gameAreaCell5, #gameAreaCell6, #gameAreaCell7, #gameAreaCell8 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+    background-color: #333;
+    position: relative;
 }
 
 .arrowButton {
@@ -41,20 +53,22 @@ body {
     transform: rotate(90deg);
 }
 
-.headerCV {
-    font-size: 2rem;
-    color: #909090;
-
+.bgGrass {
+    background-image: url("./resources/grass.png");
+    background-size: cover;
+    background-position: center;
 }
 
-.headerFont {
-    font-family: var(--headerFont);
+.bgWallBasic {
+    background-image: url("./resources/wallBasic.png");
+    background-size: cover;
+    background-position: center;
 }
 
-.headerMain {
-    font-size: 3rem;
-    color: #333;
-    text-align: center;
+.bgWallGreen {
+    background-image: url("./resources/wallGreen.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .containerAchievements {
@@ -76,6 +90,31 @@ body {
     justify-content: center;
 }
 
+
+.headerCV {
+    font-size: 2rem;
+    color: #909090;
+
+}
+
+.headerFont {
+    font-family: var(--headerFont);
+}
+
+.headerMain {
+    font-size: 3rem;
+    color: #333;
+    text-align: center;
+}
+
+.imgObject {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
 
 .pAchievements {
     font-weight: 300;
