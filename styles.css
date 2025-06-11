@@ -112,6 +112,11 @@ body {
     margin-bottom: 0;
 }
 
+.hidden {
+    display: none;
+}
+
+
 .imgObject {
   width: 100%;
   height: 100%;
@@ -123,4 +128,8 @@ body {
 
 .pAchievements {
     font-weight: 300;
+}
+
+.visible {
+    display: block;
 }

@@ -35,11 +35,12 @@ class Game {
         this.posy = position.y;
         this.playerDirection = 'front';
         this.listOfCollectedItems = [];
-
-        this.playerElement = document.createElement('img');
+        this.playerElement = document.getElementById('imgCell4');
         this.playerElement.src = 'resources/CharacterBack.png';
         this.playerElement.alt = 'Hráč';
-        this.playerElement.classList.add('imgObject'); 
+        this.playerElement.classList.remove('hidden');
+        this.playerElement.classList.add('visible');
+
         const playerTile = document.getElementById('gameAreaCell4');
         playerTile.appendChild(this.playerElement); 
 
@@ -116,11 +117,24 @@ class Game {
             } else {
                 tile.classList.add('bgGrass');
             }
-            
-            if (texts[tileCharContent]) {
+
+            const imgElement = document.getElementById(`imgCell${i}`);
+            // objects on map
+            if (texts[tileCharContent] && i !== 4 && !this.listOfCollectedItems.includes(tileCharContent)) {
+                imgElement.src = `resources/${texts[tileCharContent]["img"]}`;
+                imgElement.alt = `Tile ${tileCharContent}`;
+                imgElement.classList.add('visible');
+                imgElement.classList.remove('hidden');
+                tile.appendChild(imgElement);
+            } else if (i !== 4) { // hide image without objects
+                imgElement.classList.add('hidden');
+                imgElement.classList.remove('visible');
+            } else if (i === 4 && texts[tileCharContent]) { // collect item
                 console.log(`Tile: (${texts[tileCharContent]})`);
                 this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
+                this.listOfCollectedItems.push(tileCharContent);
             }
+            
         }
     }
 }
@@ -128,9 +142,6 @@ class Game {
 const game = new Game(mapText);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const output = document.getElementById('output');
-    output.textContent = `Startovní pozice: (${game.posx}, ${game.posy})\n\nMapa:\n${game.map.join('\n')}`;
-
     game.play();
 });
 
