@@ -9,12 +9,20 @@ body {
     background-color: lightgray;
 }
 
-
 #gameArea {
     width: 90vw;
     height: 90vw;
     background-color: #909090;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+#gameAreaRow1, #gameAreaRow2, #gameAreaRow3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .arrowButton {
