@@ -1,13 +1,13 @@
 const mapText = `
 ###################
-#########...i.#####
-##.7..8.#####h.####
-##6####.#a..##.g..#
-##.#.#.9..#.#..##.#
-##.5.######b###.f.#
-####4#2.1.#.#.e.###
-####.#.##0#k.d#####
-####.3..#s#.#######
+#########...k.#####
+##.4....#####d.####
+##.####5#.7.##..c.#
+##.#.#..6.#.#..##.#
+##3..######8###.b.#
+####.#..0.#.#a..###
+####2#1##.#.9.#####
+####....#s#.#######
 ###################
 `;
 
@@ -62,6 +62,7 @@ class Game {
     
     play() {
         console.log(`Hra začíná na pozici: (${this.posx}, ${this.posy})`);
+        game.updateGameArea();
     }
 
     movePlayer(direction) {
@@ -209,7 +210,9 @@ if (map[e.key]) game.movePlayer(map[e.key]);
 game.updateGameArea();
 });
 
-document.querySelectorAll('.containerControls img').forEach(btn => {
-btn.addEventListener('click', () => game.movePlayer(btn.dataset.dir))
-game.updateGameArea();
-});
+document.querySelectorAll('.containerControls img').forEach(btn =>
+btn.addEventListener('click', () => {
+    game.movePlayer(btn.dataset.dir)
+    game.updateGameArea()
+})
+);
