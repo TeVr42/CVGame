@@ -62,9 +62,6 @@ class Game {
     
     play() {
         console.log(`Hra začíná na pozici: (${this.posx}, ${this.posy})`);
-        setInterval(() => {
-            this.updateGameArea();
-        }, 250);
     }
 
     movePlayer(direction) {
@@ -202,11 +199,17 @@ const map = {
     w: 'up',
     s: 'down',
     a: 'left',
-    d: 'right'
+    d: 'right',
+    ArrowUp: 'up',
+    ArrowDown: 'down',
+    ArrowLeft: 'left',
+    ArrowRight: 'right'
 };
 if (map[e.key]) game.movePlayer(map[e.key]);
+game.updateGameArea();
 });
 
-document.querySelectorAll('.containerControls img').forEach(btn =>
+document.querySelectorAll('.containerControls img').forEach(btn => {
 btn.addEventListener('click', () => game.movePlayer(btn.dataset.dir))
-);
+game.updateGameArea();
+});
