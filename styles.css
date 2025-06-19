@@ -1,18 +1,22 @@
 :root {
   --headerFont: "Bungee Inline", sans-serif;
   --textFont: "IBM Plex Mono", monospace;
+  --mainBlue: #10829e;
+  --white: #ffffff;
+  --bgColor: #d1dfe2;
+
 }
 
 body {
     margin: 0;
     font-family: var(--textFont);
-    background-color: lightgray;
+    background-color: var(--bgColor);
 }
 
 #gameArea {
     width: 90vw;
     height: 90vw;
-    background-color: #909090;
+    background-color: var(--mainBlue);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,8 +36,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 33%;
-    height: 100%;
-    background-color: #333;
+    height: 100%;;
     position: relative;
 }
 
@@ -97,7 +100,7 @@ body {
 
 .headerCV {
     font-size: 2rem;
-    color: #909090;
+    color: var(--white);
 
 }
 
@@ -107,7 +110,7 @@ body {
 
 .headerMain {
     font-size: 3rem;
-    color: #333;
+    color: var(--mainBlue);
     text-align: center;
     margin-bottom: 0;
 }
