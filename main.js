@@ -23,8 +23,8 @@ const texts = {
     "8": {"texts": [{"sec": "skills", "text": "Machine Learning and Neural Networks"}], "img": "experience.png"},
     "9": {"texts": [{"sec": "cert", "text": "International Summer School on AI"}], "img": "parchment.png"},
     "a": {"texts": [{"sec": "edu", "text": "Thesis: Hybrid system for speech extraction"}], "img": "thesis.png"},
-    "b": {"texts": [{"sec": "edu", "text": "Bachelor's degree - Information Technology, Intelligent Systems, FM TUL"}], "img": "eduHat.png"},
-    "k": {"texts": [{"sec": "", "text": "What's next? Maybe we'll meet on my journey..."}], "img": "levelUp.png"}
+    "b": {"texts": [{"sec": "edu", "text": "Bachelor's degree: Information Technology - Intelligent Systems, FM TUL"}], "img": "eduHat.png"},
+    "k": {"texts": [{"sec": "next", "text": "Maybe we'll meet on my journey..."}], "img": "levelUp.png"}
 }
 
 class Game {
@@ -45,7 +45,9 @@ class Game {
         playerTile.appendChild(this.playerElement); 
 
         this.infoText = document.getElementById('infoText');
-        this.infoText.textContent = 'Controls: WSAD or buttons';
+        this.infoTextBold = document.getElementById('infoTextBold');
+        this.infoTextBold.textContent = 'Controls:';
+        this.infoText.textContent = 'WSAD or buttons';
     }
 
     findStartPosition(char) {
@@ -59,11 +61,10 @@ class Game {
     }
     
     play() {
-        // Implementace herní logiky zde
         console.log(`Hra začíná na pozici: (${this.posx}, ${this.posy})`);
         setInterval(() => {
             this.updateGameArea();
-        }, 250); // Aktualizace každou sekundu
+        }, 250);
     }
 
     movePlayer(direction) {
@@ -119,7 +120,6 @@ class Game {
             }
 
             const imgElement = document.getElementById(`imgCell${i}`);
-            // objects on map
             if (texts[tileCharContent] && i !== 4 && !this.listOfCollectedItems.includes(tileCharContent)) {
                 imgElement.src = `resources/${texts[tileCharContent]["img"]}`;
                 imgElement.alt = `Tile ${tileCharContent}`;
@@ -131,6 +131,7 @@ class Game {
                 imgElement.classList.remove('visible');
             } else if (i === 4 && texts[tileCharContent] && !this.listOfCollectedItems.includes(tileCharContent)) { // collect item
                 console.log(`Tile: (${texts[tileCharContent]})`);
+                this.infoTextBold.textContent = this.mapSecToName(texts[tileCharContent]["texts"][0]["sec"]);
                 this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
                 this.listOfCollectedItems.push(tileCharContent);
             
@@ -167,6 +168,25 @@ class Game {
 
             }
             
+        }
+    }
+
+    mapSecToName(sec) {
+        switch (sec) {
+            case "favLang":
+                return "Favorite Language:";
+            case "skills":
+                return "Skills:";
+            case "cert":
+                return "Certificates:";
+            case "exp":
+                return "Experience:";
+            case "edu":
+                return "Education:";
+            case "next":
+                return "What's next?:";
+            default:
+                return "";
         }
     }
 }
