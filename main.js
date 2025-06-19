@@ -133,25 +133,38 @@ class Game {
                 console.log(`Tile: (${texts[tileCharContent]})`);
                 this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
                 this.listOfCollectedItems.push(tileCharContent);
-                for (let j = 0; j < texts[tileCharContent]["texts"].length; j++) {
-                    switch (texts[tileCharContent]["texts"][j]["sec"]) {
-                        case "favLang":
-                            document.getElementById('pAchievFavLan').textContent = texts[tileCharContent]["texts"][0]["text"];
-                            break;
-                        case "skills":
-                            document.getElementById('pAchievSkill').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
-                            break;
-                        case "cert":
-                            document.getElementById('pAchievCertif').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
-                            break;
-                        case "exp":
-                            document.getElementById('pAchievExp').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
-                            break;
-                        case "edu":
-                            document.getElementById('pAchievEdu').textContent += ` ${texts[tileCharContent]["texts"][0]["text"]}`;
-                            break;
-                    }
+            
+            for (let j = 0; j < texts[tileCharContent]["texts"].length; j++) {
+                const section = texts[tileCharContent]["texts"][j]["sec"];
+                const text = texts[tileCharContent]["texts"][j]["text"];
+
+                let ulElement;
+
+                switch (section) {
+                    case "favLang":
+                        ulElement = document.getElementById('pAchievFavLan');
+                        break;
+                    case "skills":
+                        ulElement = document.getElementById('pAchievSkill');
+                        break;
+                    case "cert":
+                        ulElement = document.getElementById('pAchievCertif');
+                        break;
+                    case "exp":
+                        ulElement = document.getElementById('pAchievExp');
+                        break;
+                    case "edu":
+                        ulElement = document.getElementById('pAchievEdu');
+                        break;
                 }
+
+                if (ulElement) {
+                    const li = document.createElement('li');
+                    li.textContent = text;
+                    ulElement.appendChild(li);
+                }
+            }
+
             }
             
         }
