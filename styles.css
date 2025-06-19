@@ -1,9 +1,9 @@
 :root {
   --headerFont: "Bungee Inline", sans-serif;
   --textFont: "IBM Plex Mono", monospace;
-  --mainBlue: #10829e;
+  --mainDark: #819A91;
   --white: #ffffff;
-  --bgColor: #d1dfe2;
+  --bgColor: #EEEFE0;
 
 }
 
@@ -12,6 +12,10 @@ body {
     font-family: var(--textFont);
     background-color: var(--bgColor);
     font-size: 1rem;
+}
+
+li::marker {
+    color: var(--white);
 }
 
 #infoText {
@@ -27,7 +31,6 @@ body {
 #gameArea {
     width: 90vw;
     height: 90vw;
-    background-color: var(--mainBlue);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,17 +114,17 @@ body {
 
 .headerCV {
     font-size: 2rem;
-    color: var(--white);
-
+    color: var(--mainDark);
 }
 
 .headerFont {
     font-family: var(--headerFont);
+    font-weight: lighter;
 }
 
 .headerMain {
     font-size: 3rem;
-    color: var(--mainBlue);
+    color: var(--mainDark);
     text-align: center;
     margin-bottom: 0;
 }
