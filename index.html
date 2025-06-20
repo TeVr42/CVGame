@@ -15,12 +15,12 @@
 <body>
     <h1 class="headerFont headerMain">CV Game</h1>
     <div class="containerMain">
-        <div class="containerIntro">
-            <div class="containerInfo">
+        <div class="containerIntro" id="firstContainer">
+        </div>
+        <div class="containerGame" id="secondContainer">
+            <div class="containerInfo" id="containerInfo">
                 <p id="infoTextBold"></p><p id="infoText">Načítání...</p>
             </div>
-        </div>
-        <div class="containerGame">
             <div id="gameArea">
                 <div id="gameAreaRow1">
                     <div id="gameAreaCell0"><img id="imgCell0" src="" alt="" class="hidden imgObject"></div>
@@ -51,21 +51,22 @@
             </div>
         </div>
 
-        <div class="containerAchievements">
+        <div class="containerAchievements" id="thirdContainer">
             <h2 class="headerFont headerCV">CV</h2>
+            <div id="movableToFirst">
             <h3 class="">Character name:</h3>
             <ul class="pAchievements"><li>Tereza Vrbová</li></ul>
             <h3 class="">Education:</h3>
             <ul id="pAchievEdu" class="pAchievements"></ul>
             <h3 class="">Certificates:</h3>
             <ul id="pAchievCertif" class="pAchievements"></ul>
+            </div>
             <h3 class="">Skills:</h3>
             <ul id="pAchievSkill" class="pAchievements"></ul>
             <h3 class="">Experience:</h3>
             <ul id="pAchievExp" class="pAchievements"></ul>
             <h3 class="">Favorite language:</h3>
             <ul id="pAchievFavLan" class="pAchievements"></ul>
-
         </div>
 
     </div>

@@ -28,6 +28,10 @@ li::marker {
     margin-bottom: 0;
 }
 
+#infoTextBold, #infoText {
+    color: var(--bgColor);
+}
+
 #gameArea {
     width: 90vw;
     height: 90vw;
@@ -52,6 +56,12 @@ li::marker {
     width: 33%;
     height: 100%;;
     position: relative;
+}
+
+#secondContainer {
+    background-color: var(--mainDark);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 .arrowButton {
@@ -127,12 +137,12 @@ li::marker {
     color: var(--mainDark);
     text-align: center;
     margin-bottom: 0;
+    margin-top: 1.5rem;
 }
 
 .hidden {
     display: none;
 }
-
 
 .imgObject {
   width: 100%;
@@ -151,14 +161,29 @@ li::marker {
     display: block;
 }
 
+
+
 @media (min-width: 600px) {
+
+    body {
+        font-size: 1.1rem;
+    }
 
     #gameArea {
         width: 25vw;
         height: 25vw;
     }
 
-    .containerAchievements, .containerInfo {
+    #infoText {
+    margin-top: 0;
+    height: 3.85rem;
+    }
+
+    .arrowButton {
+    height: 8vh;
+    }
+
+    .containerAchievements, .containerInfo, #movableToFirst, .containerAchievements {
         width: 25vw;
     }
 
@@ -167,5 +192,14 @@ li::marker {
         justify-content: space-evenly;
         align-items: start;
     }
+
+    .headerCV {
+        display: none;
+    }
+
+    .headerMain {
+        font-size: 3rem;
+    }
+
 
 }

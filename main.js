@@ -124,7 +124,7 @@ class Game {
                 imgElement.classList.add('visible');
                 imgElement.classList.remove('hidden');
                 tile.appendChild(imgElement);
-            } else if (i !== 4) { // hide image without objects
+            } else if (i !== 4) {
                 imgElement.classList.add('hidden');
                 imgElement.classList.remove('visible');
             } else if (i === 4 && texts[tileCharContent] && !this.listOfCollectedItems.includes(tileCharContent)) { // collect item
@@ -189,6 +189,22 @@ class Game {
     }
 }
 
+function moveSectionForResponsibility() {
+    const movable = document.getElementById('movableToFirst');
+    const first = document.getElementById('firstContainer');
+    const third = document.getElementById('thirdContainer');
+
+    if (window.innerWidth > 600) {
+        if (!first.contains(movable)) {
+        first.appendChild(movable);
+        }
+    } else {
+        if (!third.contains(movable)) {
+        third.appendChild(movable);
+        }
+    }
+}
+
 const game = new Game(mapText);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -216,3 +232,12 @@ btn.addEventListener('click', () => {
     game.updateGameArea()
 })
 );
+
+window.addEventListener('DOMContentLoaded', moveSectionForResponsibility);
+window.addEventListener('resize', moveSectionForResponsibility);
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+    event.preventDefault();
+  }
+});
