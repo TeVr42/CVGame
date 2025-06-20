@@ -163,7 +163,7 @@ li::marker {
 
 
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
 
     body {
         font-size: 1.1rem;

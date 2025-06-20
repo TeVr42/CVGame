@@ -194,7 +194,7 @@ function moveSectionForResponsibility() {
     const first = document.getElementById('firstContainer');
     const third = document.getElementById('thirdContainer');
 
-    if (window.innerWidth > 600) {
+    if (window.innerWidth > 640) {
         if (!first.contains(movable)) {
         first.appendChild(movable);
         }
