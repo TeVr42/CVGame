@@ -36,8 +36,8 @@ class Game {
         this.playerDirection = 'front';
         this.listOfCollectedItems = [];
         this.playerElement = document.getElementById('imgCell4');
-        this.playerElement.src = './resources/CharacterBack.png';
-        this.playerElement.alt = 'Hráč';
+        this.playerElement.src = './resources/characterBack.png';
+        this.playerElement.alt = 'Player Character';
         this.playerElement.classList.remove('hidden');
         this.playerElement.classList.add('visible');
 
@@ -67,10 +67,10 @@ class Game {
 
     movePlayer(direction) {
         const directions = {
-            up: { dx: 0, dy: -1, img: 'CharacterBack.png' },
-            down: { dx: 0, dy: 1, img: 'CharacterFront.png' },
-            left: { dx: -1, dy: 0, img: 'CharacterLeft.png' },
-            right: { dx: 1, dy: 0, img: 'CharacterRight.png' }
+            up: { dx: 0, dy: -1, img: 'characterBack.png' },
+            down: { dx: 0, dy: 1, img: 'characterFront.png' },
+            left: { dx: -1, dy: 0, img: 'characterLeft.png' },
+            right: { dx: 1, dy: 0, img: 'characterRight.png' }
         };
         this.playerElement.src = `./resources/${directions[direction].img}`;
 
