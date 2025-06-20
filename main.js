@@ -36,7 +36,7 @@ class Game {
         this.playerDirection = 'front';
         this.listOfCollectedItems = [];
         this.playerElement = document.getElementById('imgCell4');
-        this.playerElement.src = 'resources/CharacterBack.png';
+        this.playerElement.src = './resources/CharacterBack.png';
         this.playerElement.alt = 'Hráč';
         this.playerElement.classList.remove('hidden');
         this.playerElement.classList.add('visible');
@@ -72,7 +72,7 @@ class Game {
             left: { dx: -1, dy: 0, img: 'CharacterLeft.png' },
             right: { dx: 1, dy: 0, img: 'CharacterRight.png' }
         };
-        this.playerElement.src = `resources/${directions[direction].img}`;
+        this.playerElement.src = `./resources/${directions[direction].img}`;
 
         if (this.map[directions[direction].dy + this.posy] &&
             this.map[directions[direction].dy + this.posy][directions[direction].dx + this.posx] !== '#') {
@@ -119,7 +119,7 @@ class Game {
 
             const imgElement = document.getElementById(`imgCell${i}`);
             if (texts[tileCharContent] && i !== 4 && !this.listOfCollectedItems.includes(tileCharContent)) {
-                imgElement.src = `resources/${texts[tileCharContent]["img"]}`;
+                imgElement.src = `./resources/${texts[tileCharContent]["img"]}`;
                 imgElement.alt = `Tile ${tileCharContent}`;
                 imgElement.classList.add('visible');
                 imgElement.classList.remove('hidden');
