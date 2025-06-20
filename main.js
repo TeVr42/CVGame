@@ -61,7 +61,6 @@ class Game {
     }
     
     play() {
-        console.log(`Hra začíná na pozici: (${this.posx}, ${this.posy})`);
         game.updateGameArea();
     }
 
@@ -78,7 +77,6 @@ class Game {
             this.map[directions[direction].dy + this.posy][directions[direction].dx + this.posx] !== '#') {
             this.posx += directions[direction].dx;
             this.posy += directions[direction].dy;
-            console.log(`Hráč se přesunul na pozici: (${this.posx}, ${this.posy})`);
         }
 
     }
@@ -128,7 +126,6 @@ class Game {
                 imgElement.classList.add('hidden');
                 imgElement.classList.remove('visible');
             } else if (i === 4 && texts[tileCharContent] && !this.listOfCollectedItems.includes(tileCharContent)) { // collect item
-                console.log(`Tile: (${texts[tileCharContent]})`);
                 this.infoTextBold.textContent = this.mapSecToName(texts[tileCharContent]["texts"][0]["sec"]);
                 this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
                 this.listOfCollectedItems.push(tileCharContent);
