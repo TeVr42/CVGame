@@ -1,12 +1,12 @@
 const mapText = `
 ###################
-#########...k.#####
-##.4....#####d.####
-##.####5#.7.##..c.#
+#########k....#####
+##.4....#####b.####
+##.####5#.7.##...a#
 ##.#.#..6.#.#..##.#
-##3..######8###.b.#
-####.#..0.#.#a..###
-####2#1##.#.9.#####
+##3..######8###...#
+####.#..0.#.#.9.###
+####2#1##.#...#####
 ####....#s#.#######
 ###################
 `;
@@ -117,11 +117,16 @@ class Game {
 
             const imgElement = document.getElementById(`imgCell${i}`);
             if (texts[tileCharContent] && i !== 4 && !this.listOfCollectedItems.includes(tileCharContent)) {
-                imgElement.src = `./resources/${texts[tileCharContent]["img"]}`;
-                imgElement.alt = `Tile ${tileCharContent}`;
-                imgElement.classList.add('visible');
-                imgElement.classList.remove('hidden');
-                tile.appendChild(imgElement);
+                const imgSrc = `./resources/${texts[tileCharContent]["img"]}`;
+                const tempImage = new Image();
+                tempImage.src = imgSrc;
+                tempImage.onload = () => {
+                    imgElement.src = imgSrc;
+                    imgElement.alt = `Tile ${tileCharContent}`;
+                    imgElement.classList.remove('hidden');
+                    imgElement.classList.add('visible');
+                    tile.appendChild(imgElement);
+                };
             } else if (i !== 4) {
                 imgElement.classList.add('hidden');
                 imgElement.classList.remove('visible');
