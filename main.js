@@ -48,6 +48,9 @@ class Game {
         this.infoTextBold = document.getElementById('infoTextBold');
         this.infoTextBold.textContent = 'Controls:';
         this.infoText.textContent = 'WSAD or buttons';
+
+        this.isGameOver = false;
+        this.fireworkInterval = null;
     }
 
     findStartPosition(char) {
@@ -105,14 +108,34 @@ class Game {
             } else {
                 tileCharContent = ' ';
             }
+
+            if (i === 4 && tileCharContent === 'k' && !this.isGameOver) {
+                this.isGameOver = true;
+                this.fireworkInterval = setInterval(() => {
+                    this.updateGameArea();
+                }, 200);
+                return
+            }
             
-            tile.classList.remove('bgWallBasic', 'bgWallGreen', 'bgGrass');
-            if (tileCharContent === '#') {
+            tile.classList.remove('bgWallBasic', 'bgWallGreen', 'bgGrass', 'bgFirework1', 'bgFirework2', 'bgFirework3');
+            if (this.isGameOver) {
+                const randomOption = Math.random();
+                if (randomOption < 0.33) {
+                    tile.classList.add('bgFirework1');
+                } else if (randomOption < 0.66) {
+                    tile.classList.add('bgFirework2');
+                } else {
+                    tile.classList.add('bgFirework3');
+                }
+
+            } else {
+                if (tileCharContent === '#') {
                 // const randomOption = Math.random() < 0.5 ? 'bgWallBasic' : 'bgWallGreen';
                 const randomOption = 'bgWallGreen';
                 tile.classList.add(randomOption);
-            } else {
-                tile.classList.add('bgGrass');
+                } else {
+                    tile.classList.add('bgGrass');
+                }
             }
 
             const imgElement = document.getElementById(`imgCell${i}`);
@@ -135,36 +158,36 @@ class Game {
                 this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
                 this.listOfCollectedItems.push(tileCharContent);
             
-            for (let j = 0; j < texts[tileCharContent]["texts"].length; j++) {
-                const section = texts[tileCharContent]["texts"][j]["sec"];
-                const text = texts[tileCharContent]["texts"][j]["text"];
+                for (let j = 0; j < texts[tileCharContent]["texts"].length; j++) {
+                    const section = texts[tileCharContent]["texts"][j]["sec"];
+                    const text = texts[tileCharContent]["texts"][j]["text"];
 
-                let ulElement;
+                    let ulElement;
 
-                switch (section) {
-                    case "favLang":
-                        ulElement = document.getElementById('pAchievFavLan');
-                        break;
-                    case "skills":
-                        ulElement = document.getElementById('pAchievSkill');
-                        break;
-                    case "cert":
-                        ulElement = document.getElementById('pAchievCertif');
-                        break;
-                    case "exp":
-                        ulElement = document.getElementById('pAchievExp');
-                        break;
-                    case "edu":
-                        ulElement = document.getElementById('pAchievEdu');
-                        break;
+                    switch (section) {
+                        case "favLang":
+                            ulElement = document.getElementById('pAchievFavLan');
+                            break;
+                        case "skills":
+                            ulElement = document.getElementById('pAchievSkill');
+                            break;
+                        case "cert":
+                            ulElement = document.getElementById('pAchievCertif');
+                            break;
+                        case "exp":
+                            ulElement = document.getElementById('pAchievExp');
+                            break;
+                        case "edu":
+                            ulElement = document.getElementById('pAchievEdu');
+                            break;
+                    }
+
+                    if (ulElement) {
+                        const li = document.createElement('li');
+                        li.textContent = text;
+                        ulElement.appendChild(li);
+                    }
                 }
-
-                if (ulElement) {
-                    const li = document.createElement('li');
-                    li.textContent = text;
-                    ulElement.appendChild(li);
-                }
-            }
 
             }
             

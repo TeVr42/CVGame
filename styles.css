@@ -86,6 +86,25 @@ li::marker {
     background-position: center;
 }
 
+.bgFirework1 {
+    background-image: url('./resources/firework1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.bgFirework2 {
+    background-image: url('./resources/firework2.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.bgFirework3 {
+    background-image: url('./resources/firework3.png');
+    background-size: cover;
+    background-position: center;
+}
+
+
 .bgWallBasic {
     background-image: url("./resources/wallBasic.png");
     background-size: cover;
