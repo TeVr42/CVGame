@@ -24,7 +24,7 @@ const texts = {
     "9": {"texts": [{"sec": "cert", "text": "International Summer School on AI"}], "img": "parchment.png"},
     "a": {"texts": [{"sec": "edu", "text": "Thesis: Hybrid system for speech extraction"}], "img": "thesis.png"},
     "b": {"texts": [{"sec": "edu", "text": "Bachelor's degree: Information Technology - Intelligent Systems, FM TUL"}], "img": "eduHat.png"},
-    "k": {"texts": [{"sec": "next", "text": "Maybe we'll meet on my journey..."}], "img": "levelUp.png"}
+    "k": {"texts": [{"sec": "next", "text": "Maybe we'll meet on my journey... Let's get in touch."}], "img": "levelUp.png"}
 }
 
 class Game {
@@ -46,8 +46,8 @@ class Game {
 
         this.infoText = document.getElementById('infoText');
         this.infoTextBold = document.getElementById('infoTextBold');
-        this.infoTextBold.textContent = 'Controls:';
-        this.infoText.textContent = 'WSAD or buttons';
+        this.infoTextBold.textContent = 'Play the CV Game!';
+        this.infoText.textContent = 'Use WSAD or buttons to collect items. Gain experience and fill my CV!';
 
         this.isGameOver = false;
         this.fireworkInterval = null;
