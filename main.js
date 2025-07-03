@@ -84,19 +84,67 @@ class Game {
 
     }
 
+    setTileBackground(tile, char) {
+        tile.classList.remove('bgWallBasic', 'bgWallGreen', 'bgGrass', 'bgFirework1', 'bgFirework2', 'bgFirework3');
+        if (this.isGameOver) {
+            const randomOption = Math.random();
+            if (randomOption < 0.33) {
+                tile.classList.add('bgFirework1');
+            } else if (randomOption < 0.66) {
+                tile.classList.add('bgFirework2');
+            } else {
+                tile.classList.add('bgFirework3');
+            }
+
+        } else {
+            if (char === '#') {
+            const randomOption = 'bgWallGreen';
+            tile.classList.add(randomOption);
+            } else {
+                tile.classList.add('bgGrass');
+            }
+        }
+    }
+
+    collectItem(tileCharContent) {
+        this.infoTextBold.textContent = this.mapSecToName(texts[tileCharContent]["texts"][0]["sec"]);
+        this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
+        this.listOfCollectedItems.push(tileCharContent);
+    
+        for (let j = 0; j < texts[tileCharContent]["texts"].length; j++) {
+            const section = texts[tileCharContent]["texts"][j]["sec"];
+            const text = texts[tileCharContent]["texts"][j]["text"];
+
+            let ulElement;
+
+            switch (section) {
+                case "favLang":
+                    ulElement = document.getElementById('pAchievFavLan');
+                    break;
+                case "skills":
+                    ulElement = document.getElementById('pAchievSkill');
+                    break;
+                case "cert":
+                    ulElement = document.getElementById('pAchievCertif');
+                    break;
+                case "exp":
+                    ulElement = document.getElementById('pAchievExp');
+                    break;
+                case "edu":
+                    ulElement = document.getElementById('pAchievEdu');
+                    break;
+            }
+
+            if (ulElement) {
+                const li = document.createElement('li');
+                li.textContent = text;
+                ulElement.appendChild(li);
+            }
+        }
+    }
 
     updateGameArea() {
-        const tile0 = document.getElementById('gameAreaCell0');
-        const tile1 = document.getElementById('gameAreaCell1');
-        const tile2 = document.getElementById('gameAreaCell2');
-        const tile3 = document.getElementById('gameAreaCell3');
-        const tile4 = document.getElementById('gameAreaCell4');
-        const tile5 = document.getElementById('gameAreaCell5');
-        const tile6 = document.getElementById('gameAreaCell6');
-        const tile7 = document.getElementById('gameAreaCell7');
-        const tile8 = document.getElementById('gameAreaCell8');
-
-        const tiles = [tile0, tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8];
+        const tiles = Array.from({ length: 9 }, (_, i) => document.getElementById(`gameAreaCell${i}`));
 
         for (let i = 0; i < tiles.length; i++) {
             const tile = tiles[i];
@@ -116,27 +164,8 @@ class Game {
                 }, 200);
                 return
             }
-            
-            tile.classList.remove('bgWallBasic', 'bgWallGreen', 'bgGrass', 'bgFirework1', 'bgFirework2', 'bgFirework3');
-            if (this.isGameOver) {
-                const randomOption = Math.random();
-                if (randomOption < 0.33) {
-                    tile.classList.add('bgFirework1');
-                } else if (randomOption < 0.66) {
-                    tile.classList.add('bgFirework2');
-                } else {
-                    tile.classList.add('bgFirework3');
-                }
 
-            } else {
-                if (tileCharContent === '#') {
-                // const randomOption = Math.random() < 0.5 ? 'bgWallBasic' : 'bgWallGreen';
-                const randomOption = 'bgWallGreen';
-                tile.classList.add(randomOption);
-                } else {
-                    tile.classList.add('bgGrass');
-                }
-            }
+            this.setTileBackground(tile, tileCharContent);
 
             const imgElement = document.getElementById(`imgCell${i}`);
             if (texts[tileCharContent] && i !== 4 && !this.listOfCollectedItems.includes(tileCharContent)) {
@@ -154,41 +183,7 @@ class Game {
                 imgElement.classList.add('hidden');
                 imgElement.classList.remove('visible');
             } else if (i === 4 && texts[tileCharContent] && !this.listOfCollectedItems.includes(tileCharContent)) { // collect item
-                this.infoTextBold.textContent = this.mapSecToName(texts[tileCharContent]["texts"][0]["sec"]);
-                this.infoText.textContent = texts[tileCharContent]["texts"][0]["text"];
-                this.listOfCollectedItems.push(tileCharContent);
-            
-                for (let j = 0; j < texts[tileCharContent]["texts"].length; j++) {
-                    const section = texts[tileCharContent]["texts"][j]["sec"];
-                    const text = texts[tileCharContent]["texts"][j]["text"];
-
-                    let ulElement;
-
-                    switch (section) {
-                        case "favLang":
-                            ulElement = document.getElementById('pAchievFavLan');
-                            break;
-                        case "skills":
-                            ulElement = document.getElementById('pAchievSkill');
-                            break;
-                        case "cert":
-                            ulElement = document.getElementById('pAchievCertif');
-                            break;
-                        case "exp":
-                            ulElement = document.getElementById('pAchievExp');
-                            break;
-                        case "edu":
-                            ulElement = document.getElementById('pAchievEdu');
-                            break;
-                    }
-
-                    if (ulElement) {
-                        const li = document.createElement('li');
-                        li.textContent = text;
-                        ulElement.appendChild(li);
-                    }
-                }
-
+                this.collectItem(tileCharContent);
             }
             
         }
