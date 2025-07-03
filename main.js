@@ -159,6 +159,8 @@ class Game {
 
             if (i === 4 && tileCharContent === 'k' && !this.isGameOver) {
                 this.isGameOver = true;
+                this.updateGameArea();
+                this.movePlayer("down");
                 this.fireworkInterval = setInterval(() => {
                     this.updateGameArea();
                 }, 200);
