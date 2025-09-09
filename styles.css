@@ -1,9 +1,9 @@
 :root {
   --headerFont: "Bungee Inline", sans-serif;
   --textFont: "IBM Plex Mono", monospace;
-  --mainDark: #819A91;
-  --white: #ffffff;
-  --bgColor: #EEEFE0;
+  --mainDark: #44444E;
+  --white: #E9E9E9;
+  --bgColor: #ffffff;
 
 }
 
@@ -20,7 +20,7 @@ li::marker {
 
 #infoText {
     margin-top: 0;
-    height: 3.5rem;
+    min-height: 6rem;
 }
 
 #infoTextBold {
@@ -65,7 +65,7 @@ li::marker {
 }
 
 .arrowButton {
-    height: 7vh;
+    height: 9vh;
 }
 
 .arrowDown {
@@ -131,6 +131,7 @@ li::marker {
 
 .containerInfo {
     width: 90vw;
+    font-size: 1.3rem;
 }
 
 .containerMain {
@@ -152,7 +153,7 @@ li::marker {
 }
 
 .headerMain {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: var(--mainDark);
     text-align: center;
     margin-bottom: 0;
@@ -181,7 +182,6 @@ li::marker {
 }
 
 
-
 @media (min-width: 640px) {
 
     body {
@@ -195,11 +195,7 @@ li::marker {
 
     #infoText {
     margin-top: 0;
-    height: 3.85rem;
-    }
-
-    .arrowButton {
-    height: 8vh;
+    min-height: 9rem;
     }
 
     .containerAchievements, .containerInfo, #movableToFirst, .containerAchievements {
@@ -217,8 +213,14 @@ li::marker {
     }
 
     .headerMain {
-        font-size: 3rem;
+        font-size: 4rem;
     }
 
+}
 
+@media (min-width: 1300px) {
+
+    #infoText {
+    min-height: 5rem;
+    }
 }
